@@ -123,6 +123,7 @@ body {
 .promo {
   display: flex;
   flex-direction: column;
+  margin-bottom: 2.5em;
 }
 .promo__title {
   color: white;
@@ -130,6 +131,15 @@ body {
   font-size: 1.5em;
   margin: 0 0 0.4em 1.5em;
   padding: 0;
+}
+.footer {
+  display: flex;
+  justify-content: space-around;
+}
+.footer__link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
 }
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
