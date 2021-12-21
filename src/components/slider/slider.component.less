@@ -1,0 +1,54 @@
+.slider {
+  display: flex;
+  overflow: hidden;
+
+  &_films {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+  }
+
+  &__item {
+    width: 100%;
+    height: 245px;
+    margin: 0 0.7em;
+    border-radius: 25px;
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000,
+      5px 5px 15px 5px rgba(0, 0, 0, 0);
+
+    &_active {
+      min-width: 205px;
+      height: 265px;
+    }
+    &_promo {
+      height: 124px;
+      min-width: 309px;
+    }
+  }
+  &__navigation {
+    display: flex;
+  }
+  &__dote {
+    width: 10px;
+    height: 10px;
+    background-color: @color-darkblue;
+    border-radius: 50%;
+    margin: 0 0.1em;
+
+    &_active {
+      width: 34px;
+      border-radius: 28px;
+      background: @color-white;
+    }
+  }
+  &_promo {
+    margin-left: 1.3em;
+  }
+}

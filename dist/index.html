@@ -4,10 +4,72 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap"
+      rel="stylesheet"
+    />
     <title>Cinema app</title>
   </head>
   <body>
-    <h1>HI</h1>
+    <header class="user">
+      <div class="user__discription">
+        <h1 class="user__title">Hello Ihza</h1>
+        <p class="user__city">
+          <span class="icon icon_location">
+            <i class="fas fa-map-marker-alt"></i>
+          </span>
+          Molang City
+          <span class="icon icon_arrow_down"
+            ><i class="fas fa-angle-down"></i
+          ></span>
+        </p>
+      </div>
+      <div class="user__icon">
+        <img src="assets/avatarIcon.png" alt="avatar" />
+      </div>
+    </header>
+    <div class="filter">
+      <button class="filter__button">
+        <span class="icon icon_search"><i class="fas fa-search"></i></span>
+      </button>
+      <input class="filter__input" type="text" placeholder="Search Movie" />
+    </div>
+    <div class="films">
+      <h1 class="films__title">Playing Now</h1>
+      <div class="slider slider_films">
+        <div class="slider__content">
+          <img class="slider__item" src="assets/joker.jpeg" alt="poster" />
+          <img
+            class="slider__item slider__item_active"
+            src="assets/vechnye.jpeg"
+            alt="poster"
+          />
+          <img class="slider__item" src="assets/encounter.jpeg" alt="poster" />
+        </div>
+        <div class="slider__navigation">
+          <div class="slider__dote"></div>
+          <div class="slider__dote slider__dote_active"></div>
+          <div class="slider__dote"></div>
+        </div>
+      </div>
+    </div>
+    <div class="promo">
+      <h1 class="promo__title">Promo</h1>
+      <div class="slider slider_promo">
+        <img
+          class="slider__item slider__item_promo"
+          src="assets/promo2.png"
+          alt="promo"
+        />
+        <img
+          class="slider__item slider__item_promo"
+          src="assets/promo1.jpeg"
+          alt="promo"
+        />
+      </div>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>
