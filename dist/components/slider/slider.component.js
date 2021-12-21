@@ -13,7 +13,8 @@ export class Slider {
     </li>`;
     this.current = 0;
     this.items = 3;
-    this.data = this.slidShow(this.current, this.items);
+    this.value = data[1].value;
+    this.data = this.slidShow(this.current, this.items, this.value);
     this.render();
     this.applyHandler();
   }
@@ -27,6 +28,8 @@ export class Slider {
     this.hostElement.innerHTML = "";
     this.hostElement.append(slider);
     this.hostElement.append(navigation);
+    let dote = this.hostElement.querySelector(`[value="${this.value}"]`);
+    dote.classList.add("slider__dote_active");
   }
   renderSlider() {
     let template = this.data.map((el) => {
@@ -37,9 +40,9 @@ export class Slider {
     </ul>`;
   }
   renderNavigation() {
-    let dote = '<li class="slider__dote"></li>';
-    for (let i = 1; i < this.data.length; i++) {
-      dote = dote + '<div class="slider__dote"></div>';
+    let dote = '<li class="slider__dote" value="1"></li>';
+    for (let i = 2; i < this.initialeData.length; i++) {
+      dote = dote + `<li class="slider__dote" value="${i}"></li>`;
     }
     return `<ul class="slider__list">
     <li class="slider__item"><button class="slider__button" type="button" value="prev"><</button></li>
@@ -63,19 +66,22 @@ export class Slider {
     }
     if (current.value === "prev") {
       this.current = this.current - 1;
+      delete this.data[2].active;
     } else if (current.value === "next") {
       this.current = this.current + 1;
+      delete this.data[0].active;
     }
-    this.data = this.slidShow(this.current, this.items);
+    delete this.data[1].active;
+    this.value = this.data[1].value;
+    this.data = this.slidShow(this.current, this.items, this.value);
+    this.value = this.data[1].value;
     this.render();
   }
-  slidShow(start, items) {
+  slidShow(start, items, value) {
     this.current = start;
     let end = start + items;
     let showItem = this.initialeData.slice(this.current, end);
     showItem[1].active = "slider__img_active";
-    delete showItem[0].active;
-    delete showItem[2].active;
     return showItem;
   }
 }
