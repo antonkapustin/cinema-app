@@ -3,7 +3,6 @@ html {
   display: flex;
 }
 body {
-  background-image: url("assets/home.png");
   background-color: #263238;
   background-position: inherit;
   background-repeat: no-repeat;
@@ -78,6 +77,7 @@ body {
 .slider {
   display: flex;
   overflow: hidden;
+  position: relative;
 }
 .slider_films {
   flex-direction: column;
@@ -131,6 +131,12 @@ body {
 }
 .slider_promo {
   margin-left: 1.3em;
+}
+.slider__button {
+  border: none;
+  background: none;
+  margin: 0;
+  color: white;
 }
 .promo {
   display: flex;

@@ -1,6 +1,7 @@
 .slider {
   display: flex;
   overflow: hidden;
+  position: relative;
 
   &_films {
     flex-direction: column;
@@ -62,5 +63,11 @@
   }
   &_promo {
     margin-left: 1.3em;
+  }
+  &__button {
+    border: none;
+    background: none;
+    margin: 0;
+    color: @color-white;
   }
 }
