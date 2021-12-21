@@ -7,19 +7,21 @@ export class Slider {
   hostElement: Element;
   sliderTemplate: string;
   current: number;
+  items: number;
   constructor(data: IData[], hostElement: Element) {
     this.initialeData = [...data];
     this.hostElement = hostElement;
     this.sliderTemplate = `<li class="slider__item">
     <a class="slider__link" href="/{{name}}"
       ><img
-        class="slider__img"
+        class="slider__img {{active}}"
         src="{{image}}"
         alt="{{name}}"
     /></a>
     </li>`;
     this.current = 0;
-    this.data = this.slidShow(this.current, 3);
+    this.items = 3;
+    this.data = this.slidShow(this.current, this.items);
     this.render();
     this.applyHandler();
   }
@@ -75,13 +77,16 @@ export class Slider {
     } else if (current.value === "next") {
       this.current = this.current + 1;
     }
-    this.data = this.slidShow(this.current, 3);
+    this.data = this.slidShow(this.current, this.items);
     this.render();
   }
   slidShow(start: number, items: number): IData[] {
     this.current = start;
     let end = start + items;
     let showItem = this.initialeData.slice(this.current, end);
+    showItem[1].active = "slider__img_active";
+    delete showItem[0].active;
+    delete showItem[2].active;
     return showItem;
   }
 }
