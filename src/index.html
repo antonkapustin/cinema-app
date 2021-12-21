@@ -40,13 +40,29 @@
       <h1 class="films__title">Playing Now</h1>
       <div class="slider slider_films">
         <div class="slider__content">
-          <img class="slider__item" src="assets/joker.jpeg" alt="poster" />
-          <img
-            class="slider__item slider__item_active"
-            src="assets/vechnye.jpeg"
-            alt="poster"
-          />
-          <img class="slider__item" src="assets/encounter.jpeg" alt="poster" />
+          <ul class="slider__list">
+            <li class="slider__item">
+              <a class="slider__link" href="/joker"
+                ><img class="slider__img" src="assets/joker.jpeg" alt="poster"
+              /></a>
+            </li>
+            <li class="slider__item">
+              <a class="slider__link slider__link_active" href="/vechnye"
+                ><img
+                  class="slider__img slider__img_active"
+                  src="assets/vechnye.jpeg"
+                  alt="poster"
+              /></a>
+            </li>
+            <li class="slider__item">
+              <a class="slider__link" href="/enounter"
+                ><img
+                  class="slider__img"
+                  src="assets/encounter.jpeg"
+                  alt="poster"
+              /></a>
+            </li>
+          </ul>
         </div>
         <div class="slider__navigation">
           <div class="slider__dote"></div>
@@ -58,16 +74,22 @@
     <div class="promo">
       <h1 class="promo__title">Promo</h1>
       <div class="slider slider_promo">
-        <img
-          class="slider__item slider__item_promo"
-          src="assets/promo2.png"
-          alt="promo"
-        />
-        <img
-          class="slider__item slider__item_promo"
-          src="assets/promo1.jpeg"
-          alt="promo"
-        />
+        <ul class="slider__list">
+          <li class="slider__item">
+            <img
+              class="slider__img_small"
+              src="assets/promo2.png"
+              alt="promo"
+            />
+          </li>
+          <li class="slider__item">
+            <img
+              class="slider__img_small"
+              src="assets/promo1.jpeg"
+              alt="promo"
+            />
+          </li>
+        </ul>
       </div>
     </div>
     <footer class="footer">
