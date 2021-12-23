@@ -2,6 +2,7 @@ import { renderToDom } from "../../utilits/renderToTheDom.js";
 export class Slider {
   constructor(data, hostElement) {
     this.initialeData = [...data];
+    this.clone = [...data];
     this.hostElement = hostElement;
     this.sliderTemplate = `<li class="slider__item">
     <a class="slider__link" href="/{{name}}"
@@ -14,7 +15,7 @@ export class Slider {
     this.current = 0;
     this.items = 3;
     this.value = data[1].value;
-    this.data = this.slidShow(this.current, this.items, this.value);
+    this.data = this.slidShow(this.current, this.items);
     this.render();
     this.applyHandler();
   }
@@ -41,7 +42,7 @@ export class Slider {
   }
   renderNavigation() {
     let dote = '<li class="slider__dote" value="1"></li>';
-    for (let i = 2; i < this.initialeData.length; i++) {
+    for (let i = 2; i <= this.initialeData.length; i++) {
       dote = dote + `<li class="slider__dote" value="${i}"></li>`;
     }
     return `<ul class="slider__list">
@@ -66,21 +67,22 @@ export class Slider {
     }
     if (current.value === "prev") {
       this.current = this.current - 1;
-      delete this.data[2].active;
     } else if (current.value === "next") {
       this.current = this.current + 1;
-      delete this.data[0].active;
     }
     delete this.data[1].active;
     this.value = this.data[1].value;
-    this.data = this.slidShow(this.current, this.items, this.value);
+    this.data = this.slidShow(this.current, this.items);
     this.value = this.data[1].value;
     this.render();
   }
-  slidShow(start, items, value) {
+  slidShow(start, items) {
+    if (this.value === `${this.initialeData.length - 1}`) {
+      this.clone.push(...this.initialeData);
+    }
     this.current = start;
     let end = start + items;
-    let showItem = this.initialeData.slice(this.current, end);
+    let showItem = this.clone.slice(this.current, end);
     showItem[1].active = "slider__img_active";
     return showItem;
   }
