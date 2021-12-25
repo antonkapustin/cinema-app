@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile-ts": "tsc --build",
-    "compile-less": "lessc src/style.less dist/style.css",
+    "compile-less": "lessc src/details/details-style.less dist/details/details-style.css",
     "build": "npm run compile-ts && npm run compile-less && npm run copy",
     "start": "http-server ./dist",
     "copy": "copyfiles --flat './src/*.html' dist"
