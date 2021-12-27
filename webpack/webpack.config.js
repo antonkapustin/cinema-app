@@ -11,9 +11,11 @@ const isProd = !isDev;
 
 const optimization = () => {
   const config = {
-    splitChunks: {
-      chunks: "all",
-    },
+    moduleIds: "deterministic",
+    runtimeChunk: "single",
+    //   splitChunks: {
+    //     chunks: "all",
+    //   },
   };
   if (isProd) {
     config.minimizer = [
@@ -24,16 +26,20 @@ const optimization = () => {
 
   return config;
 };
-//"@babel/polyfill"
+
 const fileName = (ext) => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`);
 
 module.exports = {
   context: path.resolve(__dirname, "src"),
   mode: "development",
-  entry: ["./app.ts"],
+  entry: {
+    main: ["./app.ts", "./style.less"],
+    details: ["./details/app.ts", "./details/details-style.less"],
+  },
   output: {
     filename: fileName("js"),
     path: path.resolve(__dirname, "dist"),
+    clean: true,
   },
   resolve: {
     extensions: [".ts", ".less"],
@@ -47,6 +53,7 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: "./index.html",
       filename: "index.html",
+      chunks: ["main"],
       minify: {
         collapseWhitespace: isProd,
       },
@@ -54,6 +61,7 @@ module.exports = {
     new HTMLWebpackPlugin({
       filename: "details.html",
       template: "./details/details.html",
+      chunks: ["details"],
       minify: {
         collapseWhitespace: isProd,
       },
