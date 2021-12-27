@@ -16,7 +16,7 @@ export class Slider {
     this.clone = [...data];
     this.hostElement = hostElement;
     this.sliderTemplate = `<li class="slider__item">
-    <a class="slider__link" href="details.html?id={{id}}"
+    <a class="slider__link" href="details.html?name={{name}}"
       ><img
         class="slider__img {{active}}"
         src="{{image}}"

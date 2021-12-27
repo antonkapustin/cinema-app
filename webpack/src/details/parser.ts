@@ -8,9 +8,9 @@ export class Parser {
     this.render();
   }
   render(): void {
-    const currentId = this.parser("id");
+    const currentId = this.parser("name");
     const el = this.data.filter((el) => {
-      return el.id === currentId;
+      return el.name === currentId;
     });
     const info = document.querySelector(".info");
     if (info) {
