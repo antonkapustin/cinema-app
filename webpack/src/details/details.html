@@ -14,7 +14,30 @@
       <h1 class="header__title">Movie Detail</h1>
     </header>
     <div class="info"></div>
-    <div class="synopsis"></div>
+    <div class="tabs" data-dom="ToDo">
+      <div class="tabs__select">
+        <label class="tabs__item">
+          <input
+            type="radio"
+            class="tabs__input"
+            name="tabs__input"
+            value="synopsis"
+            checked
+          />
+          <span class="tabs__title">Synopsis</span>
+        </label>
+        <label class="tabs__item">
+          <input
+            type="radio"
+            class="tabs__input"
+            name="tabs__input"
+            value="time"
+          />
+          <span class="tabs__title">Time</span>
+        </label>
+      </div>
+      <div class="tabs__content"></div>
+    </div>
     <div class="controll">
       <button class="controll__button" type="button">Watch Trailer</button>
       <a href="/byticket" class="controll__link">Get Ticket</a>

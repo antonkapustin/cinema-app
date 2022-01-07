@@ -1,6 +1,10 @@
 /*!*******************************************************************************************************!*\
   !*** css ../node_modules/css-loader/dist/cjs.js!../node_modules/less-loader/dist/cjs.js!./style.less ***!
   \*******************************************************************************************************/
+@font-face {
+  font-family: "Quicksand";
+  src: url(b9ad763ddf99d4512049.ttf);
+}
 html {
   height: 100%;
   display: flex;
@@ -161,9 +165,5 @@ body {
   color: white;
   text-decoration: none;
   font-size: 1.2em;
-}
-@font-face {
-  font-family: "Quicksand";
-  src: url(b9ad763ddf99d4512049.ttf);
 }
 

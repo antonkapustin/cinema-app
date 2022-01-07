@@ -1,10 +1,10 @@
 import { IData } from "../../../src/components/slider/slider.interfaces";
 import { renderToDom } from "../utilits/renderToTheDom";
+import { Tabs } from "./components/tabs/tabs.component";
 
 export class Details {
   data: IData[];
   blocksTemplate: string;
-  synopsisTemplate: string;
   constructor(data: IData[]) {
     this.data = data;
     this.blocksTemplate = `<div class="blocks">
@@ -27,10 +27,7 @@ export class Details {
       </li>
     </ul>
   </div>
-  <h1 class="info__title">{{name}}</h1>
-  <div class="info__devider"></div>`;
-    this.synopsisTemplate = `<h1 class="synopsis__title">Synopsis</h1> 
-    <p class="synopsis__paragraph">{{synopsis}}</p>`;
+  <h1 class="info__title">{{name}}</h1>`;
     this.render();
   }
   render(): void {
@@ -43,8 +40,9 @@ export class Details {
     if (info) {
       info.innerHTML = this.renderInfo(el);
     }
-    if (synopsis) {
-      synopsis.innerHTML = this.renderSynopsis(el);
+    const tabs = document.querySelector(".tabs");
+    if (tabs) {
+      const tabsClass = new Tabs(el, tabs);
     }
   }
   renderInfo(el: IData[]) {
@@ -52,12 +50,6 @@ export class Details {
       return renderToDom(el, this.blocksTemplate);
     });
 
-    return template.join("");
-  }
-  renderSynopsis(el: IData[]): string {
-    let template = el.map((el) => {
-      return renderToDom(el, this.synopsisTemplate);
-    });
     return template.join("");
   }
   parser(parName: string): string {

@@ -1,0 +1,54 @@
+.tabs {
+  display: flex;
+  flex-direction: column;
+
+  &__select {
+    display: flex;
+  }
+
+  &__item {
+    width: 50%;
+    height: 45px;
+    text-align: center;
+    color: @color-darkblue;
+    font-family: @font;
+    position: relative;
+  }
+  &__input {
+    appearance: none;
+
+    &:checked {
+      + .tabs__title {
+        color: @color-white;
+      }
+      + .tabs__title::after {
+        background-color: @color-white;
+      }
+    }
+  }
+
+  &__slider {
+    padding: 15px;
+    height: 100%;
+    scroll-snap-align: start;
+    overflow: auto;
+    scroll-behavior: smooth;
+    flex-shrink: 1;
+    scroll-snap-type: y mandatory;
+  }
+  &__title {
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      display: block;
+      height: 3px;
+      width: 100%;
+      background-color: @color-darkblue;
+      border-radius: 3px;
+      z-index: 1;
+      transition: margin 0.1s ease-out;
+      pointer-events: none;
+    }
+  }
+}
