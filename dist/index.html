@@ -6,19 +6,17 @@
     <title>Cinema app</title>
   <script defer="defer" src="runtime.js"></script><script defer="defer" src="main.js"></script><link href="main.css" rel="stylesheet"></head>
   <body>
-    <header class="user">
-      <div class="user__discription">
-        <h1 class="user__title">Hello Ihza</h1>
-        <p class="user__city">
-          <span class="icon icon_location">
-            <i class="fas fa-map-marker-alt"></i>
-          </span>
+    <header class="header">
+      <div class="header__discription">
+        <h1 class="header__title">Hello Ihza</h1>
+        <p class="header__city">
+          <i class="fas fa-map-marker-alt"></i>
           Molang City
-          <span class="icon icon_arrow_down"><i class="fas fa-angle-down"></i></span>
+          <i class="fas fa-angle-down"></i>
         </p>
       </div>
-      <div class="user__icon">
-        <img src="assets/avatarIcon.png" alt="avatar">
+      <div class="header__icon">
+        <img class="header__img" src="assets/avatarIcon.png" alt="avatar">
       </div>
     </header>
     <div class="filter">
@@ -28,11 +26,11 @@
       <input class="filter__input" type="text" placeholder="Search Movie">
     </div>
     <div class="films">
-      <h1 class="films__title">Playing Now</h1>
+      <h2 class="films__title">Playing Now</h2>
       <div class="slider slider_films"></div>
     </div>
     <div class="promo">
-      <h1 class="promo__title">Promo</h1>
+      <h2 class="promo__title">Promo</h2>
       <div class="slider slider_promo">
         <ul class="slider__list">
           <li class="slider__item">
@@ -45,9 +43,9 @@
       </div>
     </div>
     <footer class="footer">
-      <a href="/home" class="footer__link"><span class="icon icon_home"><i class="fas fa-home"></i></span></a>
-      <a href="/ticket" class="footer__link"><span class="icon icon_ticket"><i class="fas fa-ticket-alt"></i></span></a>
-      <a href="/user" class="footer__link"><span class="icon icon_profile"><i class="fas fa-user"></i></span></a>
+      <a href="/home" class="footer__link"><i class="fas fa-home"></i></a>
+      <a href="/ticket" class="footer__link"><i class="fas fa-ticket-alt"></i></a>
+      <a href="/user" class="footer__link"><i class="fas fa-user"></i></a>
     </footer>
   </body>
 </html>

@@ -20,23 +20,23 @@ body {
   display: flex;
   flex-direction: column;
 }
-.user {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 4em 2em 1.4em 2.2em;
 }
-.user__discription {
+.header__discription {
   color: white;
 }
-.user__title {
+.header__title {
   margin: 0;
   margin-bottom: 0.3em;
   padding: 0;
   font-size: 1.5em;
   font-family: "Quicksand", sans-serif;
 }
-.user__city {
+.header__city {
   margin: 0;
   padding: 0;
   font-size: 1.1em;
@@ -56,9 +56,12 @@ body {
   background-color: #546e7a;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+  color: white;
 }
 .filter__input:focus {
   border: none;
+  outline: none;
+  color: white;
 }
 .filter__button {
   background-color: #546e7a;

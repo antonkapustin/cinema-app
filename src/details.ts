@@ -1,8 +1,8 @@
-import { IData } from "../../../src/components/slider/slider.interfaces";
-import { renderToDom } from "../utilits/renderToTheDom";
+import { IData } from "./components/slider/slider.interfaces";
+import { renderToDom } from "./utilits/renderToTheDom";
 import { Tabs } from "./components/tabs/tabs.component";
 
-export class Details {
+export class RenderPage {
   data: IData[];
   blocksTemplate: string;
   constructor(data: IData[]) {
@@ -12,17 +12,17 @@ export class Details {
     <ul class="blocks__list">
       <li class="blocks__item">
         <span class="blocks__icon"><i class="fas fa-th"></i></span>
-        <h1 class="blocks__title">Category</h1>
+        <h1 class="blocks__title">Категория</h1>
         <p class="blocks__paragraph">{{category}}</p>
       </li>
       <li class="blocks__item">
         <span class="blocks__icon"><i class="fas fa-clock"></i></span>
-        <h1 class="blocks__title">Duration</h1>
+        <h1 class="blocks__title">Длительность</h1>
         <p class="blocks__paragraph">{{duration}}</p>
       </li>
       <li class="blocks__item">
         <span class="blocks__icon"><i class="fas fa-star"></i></span>
-        <h1 class="blocks__title">Rating</h1>
+        <h1 class="blocks__title">Рэйтинг</h1>
         <p class="blocks__paragraph">{{rating}}</p>
       </li>
     </ul>
@@ -31,7 +31,7 @@ export class Details {
     this.render();
   }
   render(): void {
-    const currentId = this.parser("name");
+    const currentId = this.getURl("name");
     const el = this.data.filter((el) => {
       return el.name === currentId;
     });
@@ -42,7 +42,7 @@ export class Details {
     }
     const tabs = document.querySelector(".tabs");
     if (tabs) {
-      const tabsClass = new Tabs(el, tabs);
+      const tabsClass = new Tabs(el, tabs, ["synopsis", "time"]);
     }
   }
   renderInfo(el: IData[]) {
@@ -52,7 +52,7 @@ export class Details {
 
     return template.join("");
   }
-  parser(parName: string): string {
+  getURl(parName: string): string {
     let parsParam = new URLSearchParams(window.location.search);
     if (parsParam === null) {
       return "";

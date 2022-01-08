@@ -34,7 +34,7 @@ module.exports = {
   mode: "development",
   entry: {
     main: ["./app.ts", "./style.less"],
-    details: ["./details/app.ts", "./details/details-style.less"],
+    details: ["./details-app.ts", "./details-style.less"],
   },
   output: {
     filename: fileName("js"),
@@ -51,7 +51,7 @@ module.exports = {
   },
   plugins: [
     new HTMLWebpackPlugin({
-      template: "./index.html",
+      template: "./pages/index.html",
       filename: "index.html",
       chunks: ["main"],
       minify: {
@@ -60,7 +60,7 @@ module.exports = {
     }),
     new HTMLWebpackPlugin({
       filename: "details.html",
-      template: "./details/details.html",
+      template: "./pages/details.html",
       chunks: ["details"],
       minify: {
         collapseWhitespace: isProd,
