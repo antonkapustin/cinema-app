@@ -1,52 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./details/details-style.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Document</title>
-  </head>
+  <script defer="defer" src="runtime.js"></script><script defer="defer" src="details.js"></script><link href="details.css" rel="stylesheet"></head>
   <body>
     <header class="header">
-      <a class="header__link" href="/home">
+      <a class="header__link" href="./index.html">
         <i class="fas fa-arrow-left"></i>
       </a>
       <h1 class="header__title">Movie Detail</h1>
     </header>
-    <div class="info">
-      <div class="blocks">
-        <img class="blocks__img" src="assets/vechnye.jpeg" alt="vechnye" />
-        <ul class="blocks__list">
-          <li class="blocks__item">
-            <span class="blocks__icon"><i class="fas fa-th"></i></span>
-            <h1 class="blocks__title">Category</h1>
-            <p class="blocks__paragraph">+13</p>
-          </li>
-          <li class="blocks__item">
-            <span class="blocks__icon"><i class="fas fa-clock"></i></span>
-            <h1 class="blocks__title">Duration</h1>
-            <p class="blocks__paragraph">2h 37m</p>
-          </li>
-          <li class="blocks__item">
-            <span class="blocks__icon"><i class="fas fa-star"></i></span>
-            <h1 class="blocks__title">Rating</h1>
-            <p class="blocks__paragraph">8/10</p>
-          </li>
-        </ul>
+    <div class="info"></div>
+    <div class="tabs" data-dom="ToDo">
+      <div class="tabs__select">
+        <label class="tabs__item">
+          <input type="radio" class="tabs__input" name="tabs__input" value="synopsis" checked="checked">
+          <span class="tabs__title">Synopsis</span>
+        </label>
+        <label class="tabs__item">
+          <input type="radio" class="tabs__input" name="tabs__input" value="time">
+          <span class="tabs__title">Time</span>
+        </label>
       </div>
-      <h1 class="info__title">Eternals</h1>
-      <div class="info__devider"></div>
-    </div>
-    <div class="synopsis">
-      <h1 class="synopsis__title">Synopsis</h1>
-      <p class="synopsis__paragraph">
-        The fate of humanity lies in their hands.Marvel Studios? ?Eternals?
-        welcomes an existing new team of Super Heroes to the Marvel Cinematic
-        Universe.The epic story, spanning thousends of years, features a group
-        of immortal heroes forced out of the shadows to reunite against
-        mankind?s oldest enemy, The Deviants.
-      </p>
+      <div class="tabs__content"></div>
     </div>
     <div class="controll">
       <button class="controll__button" type="button">Watch Trailer</button>
