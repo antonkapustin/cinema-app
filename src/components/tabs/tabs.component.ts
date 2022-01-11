@@ -1,6 +1,7 @@
-import { isConstructorDeclaration, isThisTypeNode } from "typescript";
 import { renderToDom } from "../../utilits/renderToTheDom";
 import { IData } from "../slider/slider.interfaces";
+import { ShowTime } from "../seanses/time";
+import { isContinueStatement } from "typescript";
 
 export class Tabs {
   data: IData[];
@@ -19,14 +20,18 @@ export class Tabs {
     this.applyHandler();
   }
   render(value: number): void {
-    this.showDate();
     if (this.flag === false) {
       const tabsSelect = this.hostElement.querySelector(".tabs__select");
       tabsSelect.innerHTML = this.renderHeader();
+      this.flag = true;
     }
-
     const content = this.hostElement.querySelector(".tabs__content");
-    content.innerHTML = this.renderContent(value);
+    if (value === 1) {
+      content.innerHTML = "";
+      const seanses = new ShowTime(this.data, content);
+    } else {
+      content.innerHTML = this.renderContent(value);
+    }
   }
   applyHandler(): void {
     this.hostElement.addEventListener("click", this.onClick.bind(this));
@@ -57,7 +62,6 @@ export class Tabs {
       <span class="tabs__title">${this.params[i]}</span></label>`;
       }
     }
-    this.flag = true;
     return template;
   }
 

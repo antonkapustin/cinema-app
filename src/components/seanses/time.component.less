@@ -1,0 +1,39 @@
+.time {
+  display: flex;
+  margin: 0.9em 0;
+  scroll-snap-align: start;
+  overflow: auto;
+  scroll-behavior: smooth;
+  flex-shrink: 0;
+  width: 100%;
+  scroll-snap-type: x mandatory;
+  &__label {
+    color: @color-white;
+    border: 1px solid @color-white;
+    font-size: 0.75em;
+    font-family: @font;
+    text-align: center;
+    margin-right: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 93px;
+    height: 42px;
+    border-radius: 15px;
+    scroll-snap-align: start;
+    transform-origin: center center;
+    transform: scale(1);
+    transition: transform 0.5s;
+    &_checked {
+      background-color: @color-white;
+      color: black;
+    }
+  }
+  &__day {
+    display: none;
+  }
+  &__paragraph {
+    margin: 0;
+    padding: 0;
+  }
+}
