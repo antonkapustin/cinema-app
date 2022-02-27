@@ -33,8 +33,8 @@ module.exports = {
   context: path.resolve(__dirname, "src"),
   mode: "development",
   entry: {
-    main: ["./app.ts", "./style.less"],
-    details: ["./details-app.ts", "./details-style.less"],
+    main: ["@babel/polyfill", "./main.ts", "./style.less"],
+    details: ["@babel/polyfill", "./details-app.ts", "./details-style.less"],
   },
   output: {
     filename: fileName("js"),
@@ -42,7 +42,7 @@ module.exports = {
     clean: true,
   },
   resolve: {
-    extensions: [".ts", ".less"],
+    extensions: [".js", ".ts", ".less"],
   },
   optimization: optimization(),
   devServer: {

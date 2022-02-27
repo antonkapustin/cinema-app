@@ -1,5 +1,5 @@
 import { IData } from "./components/slider/slider.interfaces";
-import { renderToDom } from "./utilits/renderToTheDom";
+import { RenderDOM } from "./utilits/renderToTheDom";
 import { Tabs } from "./components/tabs/tabs.component";
 
 export class RenderPage {
@@ -47,7 +47,7 @@ export class RenderPage {
   }
   renderInfo(el: IData[]) {
     let template = el.map((el) => {
-      return renderToDom(el, this.blocksTemplate);
+      return RenderDOM(el, this.blocksTemplate);
     });
 
     return template.join("");

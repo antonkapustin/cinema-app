@@ -1,77 +1,63 @@
 import { IData } from "./slider.interfaces";
-import { renderToDom } from "../../utilits/renderToTheDom";
+import { RenderDOM } from "../../utilits/renderToTheDom";
 
 export class Slider {
   data: IData[];
+  hostElement: Element;
+  template: string;
   initialeData: IData[];
   clone: IData[];
-  hostElement: Element;
-  sliderTemplate: string;
   current: number;
   items: number;
   value: string;
-
-  constructor(data: IData[], hostElement: Element) {
+  constructor(data, hostElement) {
     this.initialeData = [...data];
     this.clone = [...data];
     this.hostElement = hostElement;
-    this.sliderTemplate = `<li class="slider__item">
-    <a class="slider__link" href="details.html?name={{name}}"
-      ><img
-        class="slider__img {{active}}"
-        src="{{image}}"
-        alt="{{name}}"
-    /></a>
-    </li>`;
+    this.template = `
+    <div class="slider__content"><div class="slider__item" data-dom="iterator">
+         <a class="slider__link" href="details.html?name={{name}}"
+           ><img
+            class="slider__img {{active}}"
+             src="{{image}}"
+            alt="{{name}}"
+        /></a>
+         </div>
+         </div>
+         <div class="slider__navigation">
+         <ul class="slider__list">
+        <li class="slider__item_navigation"><button class="slider__button" type="button" value="prev"><</button></li>
+        <li class="slider__item_navigation"  data-dom="iterator"><div class="slider__dote" value="{{value}}"></div></li>
+        <li class="slider__item_navigation"><button class="slider__button" type="button" value="next">></button></li>
+      </ul></div>`;
     this.current = 0;
     this.items = 3;
-    this.value = data[1].value;
+    this.value = data[1].value as string;
     this.data = this.slidShow(this.current, this.items);
-    this.render();
-    this.applyHandler();
+    this.render().then(() => {
+      this.applyHandler();
+    });
   }
-  render(): void {
-    const slider = document.createElement("div");
-    const navigation = document.createElement("div");
-    navigation.classList.add("slider__navigation");
-    slider.classList.add("slider__content");
-    slider.innerHTML = this.renderSlider();
-    navigation.innerHTML = this.renderNavigation();
-    this.hostElement.innerHTML = "";
-    this.hostElement.append(slider);
-    this.hostElement.append(navigation);
+  async render() {
+    this.hostElement.innerHTML = await RenderDOM(
+      this.initialeData,
+      this.template
+    );
 
     let dote = this.hostElement.querySelector(
       `[value="${this.value}"]`
     ) as HTMLDivElement;
     dote.classList.add("slider__dote_active");
   }
-  renderSlider(): string {
-    let template = this.data.map((el) => {
-      return renderToDom(el, this.sliderTemplate);
-    });
 
-    return `<ul class="slider__list">
-    ${template.join("")}
-    </ul>`;
-  }
-  renderNavigation(): string {
-    let dote = '<li class="slider__dote" value="1"></li>';
-    for (let i = 2; i <= this.initialeData.length; i++) {
-      dote = dote + `<li class="slider__dote" value="${i}"></li>`;
-    }
-    return `<ul class="slider__list">
-    <li class="slider__item"><button class="slider__button" type="button" value="prev"><</button></li>
-    ${dote}
-    <li class="slider__item"><button class="slider__button" type="button" value="next">></button></li>
-  </ul>`;
-  }
   applyHandler(): void {
-    this.hostElement.addEventListener("click", this.onClick.bind(this));
+    this.hostElement.addEventListener("click", this.onClick);
   }
-  onClick(event: Event): void {
-    let current = event.target as HTMLButtonElement;
 
+  onClick = (event: Event): void => {
+    console.log(1);
+    let current = event.target as HTMLButtonElement;
+    console.log(current);
     while (current !== this.hostElement) {
       if (current.classList.contains("slider__button")) {
         break;
@@ -81,18 +67,18 @@ export class Slider {
     if (current === this.hostElement) {
       return;
     }
-
     if (current.value === "prev") {
       this.current = this.current - 1;
     } else if (current.value === "next") {
       this.current = this.current + 1;
     }
-    delete this.data[1].active;
-    this.value = this.data[1].value;
-    this.data = this.slidShow(this.current, this.items);
-    this.value = this.data[1].value;
+    delete this.initialeData[1].active;
+    this.value = this.initialeData[1].value as string;
+    this.initialeData = this.slidShow(this.current, this.items);
+    this.value = this.initialeData[1].value as string;
     this.render();
-  }
+  };
+
   slidShow(start: number, items: number): IData[] {
     if (this.value === `${this.initialeData.length - 1}`) {
       this.clone.push(...this.initialeData);

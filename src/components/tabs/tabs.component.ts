@@ -1,4 +1,4 @@
-import { renderToDom } from "../../utilits/renderToTheDom";
+import { RenderDOM } from "../../utilits/renderToTheDom";
 import { IData } from "../slider/slider.interfaces";
 import { ShowTime } from "../seanses/time";
 import { isContinueStatement } from "typescript";
@@ -70,7 +70,7 @@ export class Tabs {
       <p class="synopsis__paragraph">{{${this.params[value]}}}</p>`;
 
     [template] = this.data.map((el) => {
-      return renderToDom(el, template);
+      return RenderDOM(el, template);
     });
     return template;
   }
