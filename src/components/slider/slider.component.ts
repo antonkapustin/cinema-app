@@ -26,8 +26,8 @@ export class Slider {
          </div>
          <div class="slider__navigation">
          <ul class="slider__list">
-        <li class="slider__item_navigation"><button class="slider__button" type="button" value="prev"><</button></li>
-        <li class="slider__item_navigation"  data-dom="iterator"><div class="slider__dote" value="{{value}}"></div></li>
+        <li class="slider__item_navigation" ><button class="slider__button" type="button" value="prev"><</button></li>
+        <li class="slider__item_navigation"  data-dom="iterator" ><div class="slider__dote" value="{{value}}"></div></li>
         <li class="slider__item_navigation"><button class="slider__button" type="button" value="next">></button></li>
       </ul></div>`;
     this.current = 0;
