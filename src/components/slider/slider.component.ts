@@ -1,22 +1,22 @@
-import { IData } from "./slider.interfaces";
+import { IData, IDataFilms } from "./slider.interfaces";
 import { RenderDOM } from "../../utilits/renderToTheDom";
 
 export class Slider {
-  data: IData[];
+  data: IData;
   hostElement: Element;
   template: string;
-  initialeData: IData[];
-  clone: IData[];
+  initialeData: IDataFilms[];
+  clone: IDataFilms[];
   current: number;
   items: number;
   value: string;
   constructor(data, hostElement) {
-    this.initialeData = [...data];
-    this.clone = [...data];
+    this.initialeData = [...data.films];
+    this.clone = [...data.films];
     this.hostElement = hostElement;
     this.template = `
     <div class="slider__content"><div class="slider__item" data-dom="iterator">
-         <a class="slider__link" href="details.html?name={{name}}"
+         <a class="slider__link" href="#details?name={{name}}"
            ><img
             class="slider__img {{active}}"
              src="{{image}}"
@@ -32,13 +32,13 @@ export class Slider {
       </ul></div>`;
     this.current = 0;
     this.items = 3;
-    this.value = data[1].value as string;
-    this.data = this.slidShow(this.current, this.items);
+    this.value = data.films[1].value as string;
+    this.initialeData = this.slidShow(this.current, this.items);
     this.render().then(() => {
       this.applyHandler();
     });
   }
-  async render() {
+  public async render(): Promise<void> {
     this.hostElement.innerHTML = await RenderDOM(
       this.initialeData,
       this.template
@@ -50,11 +50,11 @@ export class Slider {
     dote.classList.add("slider__dote_active");
   }
 
-  applyHandler(): void {
+  private applyHandler(): void {
     this.hostElement.addEventListener("click", this.onClick);
   }
 
-  onClick = (event: Event): void => {
+  private onClick = (event: Event): void => {
     console.log(1);
     let current = event.target as HTMLButtonElement;
     console.log(current);
@@ -79,7 +79,7 @@ export class Slider {
     this.render();
   };
 
-  slidShow(start: number, items: number): IData[] {
+  private slidShow(start: number, items: number): IDataFilms[] {
     if (this.value === `${this.initialeData.length - 1}`) {
       this.clone.push(...this.initialeData);
     }

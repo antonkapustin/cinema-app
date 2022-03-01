@@ -35,7 +35,6 @@ export const RenderDOM = async (data: Object, template: string) => {
     element = element.replace("[", ".").replace("]", "");
     return element.split(".");
   });
-
   let result = template;
 
   matchMarkers.forEach((element, i) => {

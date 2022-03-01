@@ -34,7 +34,6 @@ module.exports = {
   mode: "development",
   entry: {
     main: ["@babel/polyfill", "./main.ts", "./style.less"],
-    details: ["@babel/polyfill", "./details-app.ts", "./details-style.less"],
   },
   output: {
     filename: fileName("js"),
@@ -58,14 +57,7 @@ module.exports = {
         collapseWhitespace: isProd,
       },
     }),
-    new HTMLWebpackPlugin({
-      filename: "details.html",
-      template: "./pages/details.html",
-      chunks: ["details"],
-      minify: {
-        collapseWhitespace: isProd,
-      },
-    }),
+
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [

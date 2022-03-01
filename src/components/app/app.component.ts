@@ -13,7 +13,20 @@ export class App {
     this.hostElement = hostElement;
     this.template = hostElement.innerHTML;
   }
-  async render() {
+  public async render() {
     this.hostElement.innerHTML = await RenderDOM(this.data, this.template);
+
+    this.router.add("Home", () => {
+      this.hostElement.innerHTML = "";
+      import("../home/home.component").then(({ Home }) => {
+        new Home(this.data, this.hostElement).render();
+      });
+    });
+    this.router.add("Details", () => {
+      this.hostElement.innerHTML = "";
+      import("../details/details.component").then(({ Details }) => {
+        new Details(this.data, this.hostElement).render();
+      });
+    });
   }
 }

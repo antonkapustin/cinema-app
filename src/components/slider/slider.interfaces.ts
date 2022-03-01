@@ -1,3 +1,8 @@
 export interface IData {
-  [key: string]: string | { [key: string]: string[] };
+  loading: boolean;
+  films: { [key: string]: any | { [key: string]: string[] } }[];
+}
+
+export interface IDataFilms {
+  [key: string]: any | { [key: string]: string[] };
 }

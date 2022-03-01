@@ -1,12 +1,12 @@
-import { IData } from "../slider/slider.interfaces";
+import { IData, IDataFilms } from "../slider/slider.interfaces";
 
 export class ShowTime {
   hostElement: Element;
   flag: boolean;
-  data: IData[];
+  data: IDataFilms[];
   date: Date;
   days: string[];
-  constructor(data: IData[], hostElement: Element) {
+  constructor(data: IDataFilms[], hostElement: Element) {
     this.hostElement = hostElement;
     this.data = data;
     this.flag = false;

@@ -1,12 +1,19 @@
-import { IData } from "./components/slider/slider.interfaces";
-import { RenderDOM } from "./utilits/renderToTheDom";
-import { Tabs } from "./components/tabs/tabs.component";
+import { IDataFilms } from "../slider/slider.interfaces";
+import { RenderDOM } from "../../utilits/renderToTheDom";
 
-export class RenderPage {
-  data: IData[];
+export class Blocks {
+  data: IDataFilms[];
   blocksTemplate: string;
-  constructor(data: IData[]) {
-    this.data = data;
+  hostElement: Element;
+  current: string;
+
+  constructor(data: IDataFilms[], hostElement) {
+    this.current = this.getURl("name");
+    this.data = data.filter((el) => {
+      return el.name === decodeURI(this.current);
+    });
+
+    this.hostElement = hostElement;
     this.blocksTemplate = `<div class="blocks">
     <img class="blocks__img" src="{{image}}" alt="{{name}}" />
     <ul class="blocks__list">
@@ -28,36 +35,23 @@ export class RenderPage {
     </ul>
   </div>
   <h1 class="info__title">{{name}}</h1>`;
+
     this.render();
   }
-  render(): void {
-    const currentId = this.getURl("name");
-    const el = this.data.filter((el) => {
-      return el.name === currentId;
-    });
-    const info = document.querySelector(".info");
-    const synopsis = document.querySelector(".synopsis");
-    if (info) {
-      info.innerHTML = this.renderInfo(el);
-    }
-    const tabs = document.querySelector(".tabs");
-    if (tabs) {
-      const tabsClass = new Tabs(el, tabs, ["synopsis", "time"]);
-    }
+  async render(): Promise<void> {
+    this.hostElement.innerHTML = await RenderDOM(
+      this.data[0],
+      this.blocksTemplate
+    );
   }
-  renderInfo(el: IData[]) {
-    let template = el.map((el) => {
-      return RenderDOM(el, this.blocksTemplate);
-    });
 
-    return template.join("");
-  }
   getURl(parName: string): string {
-    let parsParam = new URLSearchParams(window.location.search);
+    let regExp = new RegExp(`(?<=${parName}=).*`, "g");
+    let parsParam = window.location.hash.match(regExp);
     if (parsParam === null) {
       return "";
     } else {
-      return parsParam.get(parName) as string;
+      return parsParam.join("");
     }
   }
 }
