@@ -17,10 +17,7 @@ export class Details {
     <h1 class="header_details__title">Movie Detail</h1>
   </header>
   <div class="info" data-dom="blocks" his-data="films"></div>
-  <div class="tabs" data-dom="tabs" his-data="films">
-    <div class="tabs__select"></div>
-    <div class="tabs__content"></div>
-  </div>
+ 
   <div class="controll">
     <button class="controll__button" type="button">Watch Trailer</button>
     <a href="/byticket" class="controll__link">Get Ticket</a>

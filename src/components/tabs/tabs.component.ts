@@ -4,27 +4,23 @@ import { ShowTime } from "../seanses/time";
 import { isContinueStatement } from "typescript";
 
 export class Tabs {
-  data: IDataFilms[];
+  data: IDataFilms;
   hostElement: Element;
-  timeTemplate: string;
-  value: string;
+  var: string;
   params: string[];
-  flag: boolean;
-  constructor(data: IDataFilms[], hostElement: Element, param: string[]) {
+  template: string;
+  constructor(data: IDataFilms, hostElement: Element) {
     this.data = data;
+    this.params = ["synopsis", "time"];
     this.hostElement = hostElement;
-    this.value;
-    this.params = param;
-    this.flag = false;
-    this.render(0);
+    this.var = `{{synopsis}}`;
+    this.template = `<p class="synopsis__paragraph">{{${this.var}}}</p>`;
+    this.render();
     this.applyHandler();
   }
-  render(value: number): void {
-    if (this.flag === false) {
-      const tabsSelect = this.hostElement.querySelector(".tabs__select");
-      // tabsSelect.innerHTML = this.renderHeader();
-      this.flag = true;
-    }
+  render(): void {
+    const tabsSelect = this.hostElement.querySelector(".tabs__select");
+    tabsSelect.innerHTML = this.renderHeader();
     const content = this.hostElement.querySelector(".tabs__content");
     // if (value === 1) {
     //   content.innerHTML = "";
@@ -33,12 +29,11 @@ export class Tabs {
     //   content.innerHTML = this.renderContent(value);
     // }
   }
-  applyHandler(): void {
+  private applyHandler(): void {
     this.hostElement.addEventListener("click", this.onClick.bind(this));
   }
-  onClick(event: Event): void {
+  private onClick(event: Event): void {
     let current = event.target as HTMLInputElement;
-
     while (current !== this.hostElement) {
       if (current.classList.contains("tabs__input")) {
         break;
@@ -48,30 +43,15 @@ export class Tabs {
     if (current === this.hostElement) {
       return;
     }
-    let key = +current.value;
-    this.render(key);
+
+    console.log(current.value);
   }
-  // renderHeader(): string {
-  //   let template = "";
-  //   for (let i = 0; i < this.params.length; i++) {
-  //     if (i === 0) {
-  //       template += `<label class="tabs__item"><input type="radio" class="tabs__input" name="tabs__input" value="${i}" checked/>
-  //       <span class="tabs__title">${this.params[i]}</span></label>`;
-  //     } else {
-  //       template += `<label class="tabs__item"><input type="radio" class="tabs__input" name="tabs__input" value="${i}"/>
-  //     <span class="tabs__title">${this.params[i]}</span></label>`;
-  //     }
-  //   }
-  //   return template;
-  // }
-
-  // renderContent(value: number): string {
-  //   let template = `
-  //     <p class="synopsis__paragraph">{{${this.params[value]}}}</p>`;
-
-  //   [template] = this.data.map((el) => {
-  //     return RenderDOM(el, template);
-  //   });
-  //   return template;
-  // }
+  private renderHeader(): string {
+    let template = "";
+    for (let i = 0; i < this.params.length; i++) {
+      template += `<label class="tabs__item"><input type="radio" class="tabs__input" name="tabs__input" value="${this.params[i]}" checked/>
+        <span class="tabs__title">${this.params[i]}</span></label>`;
+    }
+    return template;
+  }
 }

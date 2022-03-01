@@ -173,7 +173,6 @@ body {
   font-size: 1.4em;
 }
 .header_details {
-  width: 100%;
   display: flex;
   margin: 0 0 2.4em 0.4em;
   padding: 4.4em 1.8em 1em 2em;
@@ -308,7 +307,7 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 0 1.8em 0 2em;
+  margin-top: 0.58em;
 }
 .tabs__select {
   display: flex;

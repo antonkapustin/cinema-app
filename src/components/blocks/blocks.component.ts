@@ -34,7 +34,11 @@ export class Blocks {
       </li>
     </ul>
   </div>
-  <h1 class="info__title">{{name}}</h1>`;
+  <h1 class="info__title">{{name}}</h1>
+  <div class="tabs" data-dom="tabs">
+  <div class="tabs__select"></div>
+  <div class="tabs__content"></div>
+</div>`;
 
     this.render();
   }
