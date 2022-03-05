@@ -7,7 +7,7 @@ export class Home {
   template: string;
 
   constructor(data, hostElement) {
-    this.initialeData = data;
+    this.initialeData = { ...data };
     this.hostElement = hostElement;
     this.template = `
     <header class="header">
@@ -55,7 +55,7 @@ export class Home {
     </div>
   </div>
   <footer class="footer">
-    <a href="/home" class="footer__link"><i class="fas fa-home"></i></a>
+    <a href="#home" class="footer__link"><i class="fas fa-home"></i></a>
     <a href="/ticket" class="footer__link"
       ><i class="fas fa-ticket-alt"></i
     ></a>
@@ -63,16 +63,17 @@ export class Home {
   </footer>
       `;
 
-    setTimeout(() => {
-      this.initialeData.loading = false;
-      this.render();
-    }, 2000);
+    // setTimeout(() => {
+    //   this.initialeData.loading = false;
+    //   this.render();
+    // }, 2000);
   }
 
   async render() {
-    this.hostElement.innerHTML = await RenderDOM(
-      this.initialeData.loading,
-      this.template
-    );
+    // this.hostElement.innerHTML = await RenderDOM(
+    //   this.initialeData,
+    //   this.template
+    // );
+    await RenderDOM(this.initialeData, this.template, this.hostElement);
   }
 }

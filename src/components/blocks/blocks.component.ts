@@ -1,5 +1,6 @@
 import { IDataFilms } from "../slider/slider.interfaces";
 import { RenderDOM } from "../../utilits/renderToTheDom";
+import { isTypeParameterDeclaration } from "typescript";
 
 export class Blocks {
   data: IDataFilms[];
@@ -9,8 +10,8 @@ export class Blocks {
 
   constructor(data: IDataFilms[], hostElement) {
     this.current = this.getURl("name");
-    this.data = data.filter((el) => {
-      return el.name === decodeURI(this.current);
+    this.data = [...data].filter((el) => {
+      return el.name === this.current;
     });
 
     this.hostElement = hostElement;
@@ -39,23 +40,21 @@ export class Blocks {
   <div class="tabs__select"></div>
   <div class="tabs__content"></div>
 </div>`;
-
-    this.render();
   }
   async render(): Promise<void> {
-    this.hostElement.innerHTML = await RenderDOM(
-      this.data[0],
-      this.blocksTemplate
-    );
+    await RenderDOM(this.data[0], this.blocksTemplate, this.hostElement);
   }
 
   getURl(parName: string): string {
-    let regExp = new RegExp(`(?<=${parName}=).*`, "g");
-    let parsParam = window.location.hash.match(regExp);
-    if (parsParam === null) {
+    const param = new URLSearchParams(window.location.search).get(parName);
+
+    // let regExp = new RegExp(`(?<=${parName}=).*`, "g");
+    // let parsParam = window.location.hash.match(regExp);
+
+    if (param === null) {
       return "";
     } else {
-      return parsParam.join("");
+      return param;
     }
   }
 }

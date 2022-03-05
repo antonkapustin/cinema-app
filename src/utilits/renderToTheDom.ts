@@ -1,6 +1,11 @@
-export const RenderDOM = async (data: Object, template: string) => {
+export const RenderDOM = async (
+  data: Object,
+  template: string,
+  host?: Element
+) => {
   const temp = document.createElement("div");
   temp.innerHTML = template;
+  temp.classList.add("render");
   let a = temp.querySelectorAll("[data-dom]:not([data-dom] [data-dom])");
 
   let matchChildren: string[] = [];
@@ -101,6 +106,11 @@ export const RenderDOM = async (data: Object, template: string) => {
           await inst.render();
         }
       }
+    }
+  }
+  if (host) {
+    while (temp.childNodes.length) {
+      host.appendChild(temp.childNodes[0]);
     }
   }
   return temp.innerHTML;

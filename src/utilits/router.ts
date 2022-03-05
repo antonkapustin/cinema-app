@@ -3,7 +3,7 @@ export class Router {
 
   constructor(routes) {
     this.routes = new Map();
-    if (routes || []) {
+    if (routes) {
       routes.forEach((element) => {
         this.routes.set(element.path, element.cb);
       });
@@ -20,7 +20,7 @@ export class Router {
     window.addEventListener("hashchange", this.onHashChange);
   }
 
-  private onHashChange = (): void => {
+  public onHashChange = (): void => {
     const current = location.hash.slice(1);
     let newCurrent = current.charAt(0).toUpperCase() + current.slice(1);
 

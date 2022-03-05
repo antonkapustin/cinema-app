@@ -7,11 +7,11 @@ export class Details {
   template: string;
 
   constructor(data, hostElement) {
-    this.initialeData = data;
+    this.initialeData = { ...data };
     this.hostElement = hostElement;
     this.template = `
     <header class="header_details">
-    <a class="header_details__link" href="./index.html">
+    <a class="header_details__link" href="#home">
       <i class="fas fa-arrow-left"></i>
     </a>
     <h1 class="header_details__title">Movie Detail</h1>
@@ -23,17 +23,10 @@ export class Details {
     <a href="/byticket" class="controll__link">Get Ticket</a>
   </div>
       `;
-
-    setTimeout(() => {
-      this.initialeData.loading = false;
-      this.render();
-    }, 2000);
   }
 
   async render() {
-    this.hostElement.innerHTML = await RenderDOM(
-      this.initialeData,
-      this.template
-    );
+    await RenderDOM(this.initialeData, this.template, this.hostElement);
+    this.initialeData.loading = false;
   }
 }

@@ -13,7 +13,7 @@ export class Tabs {
     this.data = data;
     this.params = ["synopsis", "time"];
     this.hostElement = hostElement;
-    this.var = `{{synopsis}}`;
+    this.var = `synopsis`;
     this.template = `<p class="synopsis__paragraph">{{${this.var}}}</p>`;
     this.render();
     this.applyHandler();

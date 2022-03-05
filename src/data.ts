@@ -4,7 +4,6 @@ export const data = {
     {
       name: "Joker",
       image: "assets/joker.jpeg",
-      value: "1",
       rating: "10/10",
       duration: "2h 02min",
       category: "+18",
@@ -15,7 +14,6 @@ export const data = {
     {
       name: "Вечные",
       image: "assets/vechnye.jpeg",
-      value: "2",
       rating: "8/10",
       duration: "2h37min",
       category: "+13",
@@ -26,7 +24,6 @@ export const data = {
     {
       name: "Столкновение",
       image: "assets/encounter.jpeg",
-      value: "3",
       rating: "6/10",
       duration: "2h",
       category: "+10",

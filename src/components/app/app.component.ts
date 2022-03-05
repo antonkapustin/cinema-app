@@ -14,7 +14,7 @@ export class App {
     this.template = hostElement.innerHTML;
   }
   public async render() {
-    this.hostElement.innerHTML = await RenderDOM(this.data, this.template);
+    // this.hostElement.innerHTML = await RenderDOM(this.data, this.template);
 
     this.router.add("Home", () => {
       this.hostElement.innerHTML = "";
@@ -28,5 +28,7 @@ export class App {
         new Details(this.data, this.hostElement).render();
       });
     });
+
+    this.router.onHashChange();
   }
 }
