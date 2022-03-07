@@ -28,6 +28,12 @@ export class App {
         new Details(this.data, this.hostElement).render();
       });
     });
+    this.router.add("Search", () => {
+      this.hostElement.innerHTML = "";
+      import("../search/search.component").then(({ Search }) => {
+        new Search(this.data, this.hostElement).render();
+      });
+    });
 
     this.router.onHashChange();
   }

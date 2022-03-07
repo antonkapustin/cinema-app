@@ -5,9 +5,11 @@ export class Slider {
   hostElement: Element;
   template: string;
   data: IDataArr[];
+  initialeData: IDataArr[];
 
   constructor(data, hostElement) {
-    this.data = [];
+    this.data = data;
+    this.initialeData = [...data];
     this.hostElement = hostElement;
     this.template = ``;
   }
@@ -19,13 +21,14 @@ export class Slider {
   public applyHandler(): void {}
   public changeSlides(value): void {
     if (value === "prev") {
-      const prev = this.data.splice(this.data.length - 1, 1);
-      this.data[1].active = "";
-      this.data = [...prev, ...this.data];
+      const prev = this.initialeData.splice(this.initialeData.length - 1, 1);
+      this.initialeData[1].active = "";
+      this.initialeData = [...prev, ...this.initialeData];
     } else if (value === "next") {
-      const next = this.data.splice(0, 1);
-      this.data[0].active = "";
-      this.data = [...this.data, ...next];
+      const next = this.initialeData.splice(0, 1);
+      this.initialeData[0].active = "";
+      this.initialeData = [...this.initialeData, ...next];
     }
+    this.data = this.initialeData;
   }
 }

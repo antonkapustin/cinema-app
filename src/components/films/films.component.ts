@@ -7,16 +7,16 @@ export class Films extends Slider {
   items: number;
   value: number;
   data: IDataArr[];
+  initialeData: IDataArr[];
+
   constructor(data, hostElement) {
     super(data, hostElement);
-    this.data = [...data.films];
-
     this.current = 0;
     this.items = 3;
     this.value = 1;
   }
   public async render(): Promise<void> {
-    const data = this.slidShow(this.current, this.items);
+    this.data = this.slidShow(this.current, this.items);
     this.template = `
       <div class="slider__content"><div class="slider__item" data-dom="iterator">
            <a class="slider__link" href="?name={{name}}#details"
@@ -33,7 +33,9 @@ export class Films extends Slider {
           <li class="slider__item_navigation"  data-dom="iterator"><div class="slider__dote"></div></li>
           <li class="slider__item_navigation"><button class="slider__button" type="button" value="next">></button></li>
         </ul></div>`;
+
     await super.render();
+
     let dote = this.hostElement.querySelectorAll(`.slider__dote`);
     dote[this.value].classList.add("slider__dote_active");
     this.applyHandler();

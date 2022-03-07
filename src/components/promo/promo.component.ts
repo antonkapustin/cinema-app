@@ -4,7 +4,6 @@ export class Promo extends Slider {
   value: number;
   constructor(data, hostElement) {
     super(data, hostElement);
-    this.data = [...data.promo];
     this.value = 1;
   }
   public async render(): Promise<void> {
@@ -22,6 +21,6 @@ export class Promo extends Slider {
       this.changeSlides("next");
       this.hostElement.innerHTML = "";
       this.render();
-    }, 10000);
+    }, 100000);
   }
 }

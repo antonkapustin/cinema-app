@@ -23,19 +23,15 @@ export class Home {
       <img class="header__img" src="assets/avatarIcon.png" alt="avatar" />
     </div>
   </header>
-  <div class="filter">
-    <button class="filter__button">
-      <span class="icon icon_search"><i class="fas fa-search"></i></span>
-    </button>
-    <input class="filter__input" type="text" placeholder="Search Movie" />
+  <div class="filter" data-dom="filter" his-data="films">
   </div>
   <div class="films">
     <h2 class="films__title">Playing Now</h2>
-    <div class="slider slider_films" data-dom="films"></div>
+    <div class="slider slider_films" data-dom="films" his-data="films"></div>
   </div>
   <div class="promo">
     <h2 class="promo__title">Promo</h2>
-    <div class="slider slider_promo" data-dom="promo">
+    <div class="slider slider_promo" data-dom="promo" his-data="promo">
     </div>
   </div>
   <footer class="footer">
@@ -46,18 +42,9 @@ export class Home {
     <a href="/user" class="footer__link"><i class="fas fa-user"></i></a>
   </footer>
       `;
-
-    // setTimeout(() => {
-    //   this.initialeData.loading = false;
-    //   this.render();
-    // }, 2000);
   }
 
   async render() {
-    // this.hostElement.innerHTML = await RenderDOM(
-    //   this.initialeData,
-    //   this.template
-    // );
     await RenderDOM(this.initialeData, this.template, this.hostElement);
   }
 }

@@ -1,14 +1,14 @@
-import { IDataFilms } from "../slider/slider.interfaces";
+import { IDataArr } from "../slider/slider.interfaces";
 import { RenderDOM } from "../../utilits/renderToTheDom";
 import { isTypeParameterDeclaration } from "typescript";
 
 export class Blocks {
-  data: IDataFilms[];
+  data: IDataArr[];
   blocksTemplate: string;
   hostElement: Element;
   current: string;
 
-  constructor(data: IDataFilms[], hostElement) {
+  constructor(data: IDataArr[], hostElement) {
     this.current = this.getURl("name");
     this.data = [...data].filter((el) => {
       return el.name === this.current;
