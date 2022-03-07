@@ -70,10 +70,13 @@ export const RenderDOM = async (
   if (attrName.length) {
     for (let i = 0; i < attrName.length; i++) {
       let element = attrName[i];
+
       const hosts = temp.querySelectorAll(`[data-dom="${element}"]`);
+      let arr = attrName[i];
       const module = await import(
         `./../components/${element}/${element}.component.ts`
       );
+
       const name = Object.keys(module)[0];
       for (let j = 0; j < hosts.length; j++) {
         const host = hosts[j];

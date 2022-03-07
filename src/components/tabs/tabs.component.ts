@@ -1,7 +1,5 @@
 import { RenderDOM } from "../../utilits/renderToTheDom";
-import { IData, IDataFilms } from "../slider/slider.interfaces";
-import { ShowTime } from "../seanses/time";
-import { isContinueStatement } from "typescript";
+import { IDataFilms } from "../slider/slider.interfaces";
 
 export class Tabs {
   data: IDataFilms;
@@ -9,25 +7,28 @@ export class Tabs {
   var: string;
   params: string[];
   template: string;
+  contentBox: Element;
+  tabsSelect: Element;
+  template_: string;
   constructor(data: IDataFilms, hostElement: Element) {
     this.data = data;
     this.params = ["synopsis", "time"];
     this.hostElement = hostElement;
-    this.var = `synopsis`;
-    this.template = `<p class="synopsis__paragraph">{{${this.var}}}</p>`;
-    this.render();
+    this.var = `time`;
+
+    this.contentBox = this.hostElement.querySelector(".tabs__content");
+    this.tabsSelect = this.hostElement.querySelector(".tabs__select");
+    this.tabsSelect.innerHTML = this.renderHeader();
+    this.template = `<p class="synopsis__paragraph">{{synopsis}}</p>`;
+    this.template_ = `<div class="seans" data-dom="seans" his-data="time"></div>`;
     this.applyHandler();
   }
-  render(): void {
-    const tabsSelect = this.hostElement.querySelector(".tabs__select");
-    tabsSelect.innerHTML = this.renderHeader();
-    const content = this.hostElement.querySelector(".tabs__content");
-    // if (value === 1) {
-    //   content.innerHTML = "";
-    //   const seanses = new ShowTime(this.data, content);
-    // } else {
-    //   content.innerHTML = this.renderContent(value);
-    // }
+  async render(): Promise<void> {
+    if (this.var === "synopsis") {
+      await RenderDOM(this.data, this.template, this.contentBox);
+    } else {
+      await RenderDOM(this.data, this.template_, this.contentBox);
+    }
   }
   private applyHandler(): void {
     this.hostElement.addEventListener("click", this.onClick.bind(this));
@@ -43,8 +44,10 @@ export class Tabs {
     if (current === this.hostElement) {
       return;
     }
+    this.var = current.value;
+    this.contentBox.innerHTML = "";
 
-    console.log(current.value);
+    this.render();
   }
   private renderHeader(): string {
     let template = "";

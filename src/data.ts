@@ -29,7 +29,18 @@ export const data = {
       category: "+10",
       synopsis:
         "A decorated Marine goes on a rescue mission to save his two young sons from a mysterious threat. As their journey takes them in increasingly dangerous directions, the boys will need to leave their childhoods behind.",
-      time: { weekday: ["16.00", "17.00"], weekend: ["18.00", "20.00"] },
+      time: {
+        weekday: ["16.00", "17.00"],
+        weekend: ["18.00", "20.00"],
+      },
     },
+  ],
+  promo: [
+    { img: "assets/promo2.png" },
+    { img: "assets/promo1.jpeg" },
+    { img: "assets/promo2.png" },
+    { img: "assets/promo2.png" },
+    { img: "assets/promo2.png" },
+    { img: "assets/promo2.png" },
   ],
 };

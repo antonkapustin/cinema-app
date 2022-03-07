@@ -1,12 +1,12 @@
-import { IData, IDataFilms } from "../slider/slider.interfaces";
+import { IDataFilms } from "../slider/slider.interfaces";
 
-export class ShowTime {
+export class Seans {
   hostElement: Element;
   flag: boolean;
-  data: IDataFilms[];
+  data: IDataFilms;
   date: Date;
   days: string[];
-  constructor(data: IDataFilms[], hostElement: Element) {
+  constructor(data: IDataFilms, hostElement: Element) {
     this.hostElement = hostElement;
     this.data = data;
     this.flag = false;
@@ -20,20 +20,20 @@ export class ShowTime {
       "Пятница",
       "Суббота",
     ];
-    this.render();
     this.applyHandler();
   }
   render(): void {
+    console.log(this.data);
     let numberOfDay = this.date.getDay();
     let x = [...this.days].splice(numberOfDay, 6);
     let y = [...this.days].splice(0, numberOfDay);
 
     let week = [...x, ...y];
     if (this.flag === false) {
-      const content = document.createElement("div");
-      content.classList.add("time");
-      content.innerHTML = this.renderDate(week, this.date);
-      this.hostElement.append(content);
+      const days = document.createElement("div");
+      days.classList.add("seans__week");
+      days.innerHTML = this.renderDate(week, this.date);
+      this.hostElement.append(days);
       this.flag = true;
     }
     this.showSeanses(week[0]);
@@ -45,7 +45,7 @@ export class ShowTime {
     let current = event.target as HTMLInputElement;
 
     while (current !== this.hostElement) {
-      if (current.classList.contains("time__day")) {
+      if (current.classList.contains("seans__day")) {
         break;
       }
       current = current.parentElement as HTMLInputElement;
@@ -54,25 +54,28 @@ export class ShowTime {
       return;
     }
     let key = current.id;
-    const currentInput = this.hostElement.querySelector(".time__label_checked");
-    currentInput.classList.remove("time__label_checked");
+    console.log(key);
+    const currentInput = this.hostElement.querySelector(
+      ".seans__label_checked"
+    );
+    currentInput.classList.remove("seans__label_checked");
     this.showSeanses(key);
   }
 
   renderDate(array: string[], date: Date): string {
     let template = "";
     for (let i = 0; i < array.length; i++) {
-      template += `<label for="${array[i]}" class="time__label">
-      <input class="time__day" type="radio" id="${array[i]}" name="day">
-        <p class="time__paragraph">${date.getDate() + i}</p>
-        <p class="time__paragraph">${array[i]}</p>
+      template += `<label for="${array[i]}" class="seans__label">
+      <input class="seans__day" type="radio" id="${array[i]}" name="day">
+        <p class="seans__paragraph">${date.getDate() + i}</p>
+        <p class="seans__paragraph">${array[i]}</p>
         </label>`;
     }
     return template;
   }
   showSeanses(id: string): void {
     let label = this.hostElement.querySelector(`[for="${id}"]`);
-    label.classList.add("time__label_checked");
+    label.classList.add("seans__label_checked");
 
     if (id === "Пятница" || "Суббота") {
       let template = `<div class=""></div>`;

@@ -31,27 +31,11 @@ export class Home {
   </div>
   <div class="films">
     <h2 class="films__title">Playing Now</h2>
-    <div class="slider slider_films" data-dom="slider"></div>
+    <div class="slider slider_films" data-dom="films"></div>
   </div>
   <div class="promo">
     <h2 class="promo__title">Promo</h2>
-    <div class="slider slider_promo">
-      <ul class="slider__list">
-        <li class="slider__item">
-          <img
-            class="slider__img slider__img_small"
-            src="assets/promo2.png"
-            alt="promo"
-          />
-        </li>
-        <li class="slider__item">
-          <img
-            class="slider__img slider__img_small"
-            src="assets/promo1.jpeg"
-            alt="promo"
-          />
-        </li>
-      </ul>
+    <div class="slider slider_promo" data-dom="promo">
     </div>
   </div>
   <footer class="footer">
