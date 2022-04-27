@@ -48,9 +48,6 @@ export class Blocks {
   getURl(parName: string): string {
     const param = new URLSearchParams(window.location.search).get(parName);
 
-    // let regExp = new RegExp(`(?<=${parName}=).*`, "g");
-    // let parsParam = window.location.hash.match(regExp);
-
     if (param === null) {
       return "";
     } else {

@@ -1,12 +1,12 @@
-import { IDataFilms } from "../slider/slider.interfaces";
+import { IDataArr } from "../slider/slider.interfaces";
 
 export class Seans {
   hostElement: Element;
   flag: boolean;
-  data: IDataFilms;
+  data: IDataArr[];
   date: Date;
   days: string[];
-  constructor(data: IDataFilms, hostElement: Element) {
+  constructor(data: IDataArr[], hostElement: Element) {
     this.hostElement = hostElement;
     this.data = data;
     this.flag = false;
@@ -79,10 +79,6 @@ export class Seans {
 
     if (id === "Пятница" || "Суббота") {
       let template = `<div class=""></div>`;
-      let content = this.renderSeanses(template);
     }
-  }
-  renderSeanses(template: string): string {
-    return "";
   }
 }

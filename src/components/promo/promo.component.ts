@@ -21,6 +21,6 @@ export class Promo extends Slider {
       this.changeSlides("next");
       this.hostElement.innerHTML = "";
       this.render();
-    }, 100000);
+    }, 10000);
   }
 }

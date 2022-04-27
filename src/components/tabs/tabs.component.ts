@@ -1,8 +1,8 @@
 import { RenderDOM } from "../../utilits/renderToTheDom";
-import { IDataFilms } from "../slider/slider.interfaces";
+import { IDataArr } from "../slider/slider.interfaces";
 
 export class Tabs {
-  data: IDataFilms;
+  data: IDataArr[];
   hostElement: Element;
   var: string;
   params: string[];
@@ -10,7 +10,7 @@ export class Tabs {
   contentBox: Element;
   tabsSelect: Element;
   template_: string;
-  constructor(data: IDataFilms, hostElement: Element) {
+  constructor(data: IDataArr[], hostElement: Element) {
     this.data = data;
     this.params = ["synopsis", "time"];
     this.hostElement = hostElement;

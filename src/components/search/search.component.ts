@@ -16,9 +16,7 @@ export class Search {
     </a>
     <h1 class="header_details__title">Search</h1>
   </header>
-  <div class="results" data-dom="results" his-data="films"></div>
- 
-      `;
+  <div class="results" data-dom="results" his-data="films"></div>`;
   }
 
   async render() {
